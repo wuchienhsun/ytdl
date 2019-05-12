@@ -20,6 +20,9 @@ a:hover {
   color: #fff;
 }
 
+hr{
+  background-color: #fff;
+}
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:hover,
@@ -147,15 +150,17 @@ body {
           <div id='filename_div'>
 
           </div>
-          <button type="submit" class="btn btn-block btn-primary" id='download-btn'>下載</button>
+          <label class="mt-3" for="exampleInputEmail1">點擊後會自動下載</label>
+          <button type="submit" class="btn btn-block btn-primary" id='download-btn'>下載</button>          
 
           
           
           <footer class="mastfoot mt-auto">
-              <div class="inner">
-                <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-                <div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+              <div class="inner mb-3 pd-3">
+                <p class="mt-3">Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>                
+                <p>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
               </div>
+              
             </footer>
     
 </body>
@@ -184,7 +189,7 @@ var url = new URL(url_string);
 var URLs = url.searchParams.get('URL');
 let filename = url.searchParams.get('filename');
 let filenameDiv = document.createElement('div');
-filenameDiv.innerHTML = `<h5>您要下載的音樂名稱:</br> ${filename}</h5>`
+filenameDiv.innerHTML = `<h5>您要下載的音樂名稱:<hr> ${filename}</h5>`
 filename_div.appendChild(filenameDiv)
 console.log(URLs);
 console.log(filename);
