@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>youtube 下載</h1>
+  <form id='formSubmit' method="POST">
+    <input id="input" type="text" value="" name="yt">
+    <button type="submit">提交</button>
+  </form>
+  <div id="download-div">
+
+  </div>
+</body>
+<script>
+  let form = document.getElementById('formSubmit')
+  let input = document.getElementById('input')
+  let down = document.getElementById('downForm')
+  send = () => {
+    let data = {fileName: document.getElementById('down-input').value}
+    console.log(data);
+    sendRequest('http://localhost:8000/download','POST', data)
+      .then(res => {
+        input.value = ''
+        console.log(res)
+        return res.blob()
+      })
+      .then(blob => {
+        console.log(blob)
+        console.log('data',data)
+        let bl = new Blob([blob],{type:[blob.type]});
+        let fileName = Date.parse(new Date())+".mp4";
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = data;
+        link.click();
+        window.URL.revokeObjectURL(link.href);
+      })
+  }
+  if(down){
+    down.addEventListener('click',send)
+  } else {
+    form.addEventListener('submit',(e)=>{
+      e.preventDefault();
+      console.log(input.value)
+      let data = {url: input.value}      
+      sendRequest('http://localhost:8000/ytdl','POST', data)
+      .then(res => {
+        input.value = ''
+        console.log(res)
+        return res.blob()
+      })
+      .then(blob => {
+        console.log(blob)
+        let bl = new Blob([blob],{type:[blob.type]});
+        let fileName = Date.parse(new Date())+".mp4";
+        var link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+        window.URL.revokeObjectURL(link.href);
+      })
+    })
+  }
+  
+  
+    
+    sendRequest = (url, method, body) => {      
+    const options = {
+        method: method,
+        headers: {'content-type': 'application/json'}        
+    };
+    options.body = JSON.stringify(body)        
+    console.log(options)
+    return fetch(url, options);
+}
+  </script>
+</html>
