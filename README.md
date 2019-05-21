@@ -1,7 +1,7 @@
 # ytdl
 A simple service to download YouTube video to MP3 file
 
-[YouTube Download](https://ytdl.wuhsun.com "Title")
+[Website](https://ytdl.wuhsun.com "Title")
 
 # Technologies
 
@@ -14,6 +14,8 @@ A simple service to download YouTube video to MP3 file
   * Library & Framework: Bootstrap 4
   
 # Features
-* Realtime Live Stream and Chat Room
+* Download YouTube video convert to MP3 file
+
 * Video online editing
-* 
+[img](https://imgur.com/a/3s8rZZS)
+[img](https://imgur.com/a/z3k8k87)
